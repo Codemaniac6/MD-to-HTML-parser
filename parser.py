@@ -3,17 +3,17 @@ import re
         
 
 def parser(mdText):
-    htmlText = re.sub(r'^# (.*$)', r"<h1>\1</h1>", mdText, flags=re.I|re.DOTALL)
-    htmlText += re.sub(r'## (.*$)', r"<h2>\1</h2>", mdText, flags=re.DOTALL)
-    htmlText += re.sub(r'^### (.*$)', r"<h3>\1</h3>", mdText, flags=re.DOTALL)
-    htmlText += re.sub(r'\*\*(.*)\*\*', r"<b>\1</b>", mdText, flags=re.DOTALL)
-    htmlText += re.sub(r'\*(.*)\*', r"<i>\1</i>",mdText, flags=re.DOTALL)
-    htmlText += re.sub(r'\~\~(.*)\~\~', r"<del>\1</del>", mdText, flags=re.DOTALL)
-    htmlText += re.sub(r'^\> (.*)', r"<blockquote>\1</blockquote>", mdText, flags=re.DOTALL)
-    htmlText += re.sub(r'!\[(.*?)\]\((.*?)\)', r"<img alt='\1' src='\2' />", mdText, flags=re.DOTALL)
-    htmlText += re.sub(r'\[(.*?)\]\((.*?)\)', r"<a href='\2'>\1</a>", mdText, flags=re.DOTALL)
+    htmlText = re.sub(r'^# (.*$)', r"<h1>\1</h1>", mdText, flags=re.I|re.M)
+    htmlText2 = re.sub(r'## (.*$)', r"<h2>\1</h2>", htmlText, flags=re.M)
+    htmlText3 = re.sub(r'^### (.*$)', r"<h3>\1</h3>", htmlText2, flags=re.M)
+    htmlText4 = re.sub(r'\*\*(.*)\*\*', r"<b>\1</b>", htmlText3, flags=re.M)
+    htmlText5 = re.sub(r'\*(.*)\*', r"<i>\1</i>", htmlText4, flags=re.M)
+    htmlText6 = re.sub(r'\~\~(.*)\~\~', r"<del>\1</del>", htmlText5, flags=re.M)
+    htmlText7 = re.sub(r'^\> (.*)', r"<blockquote>\1</blockquote>", htmlText6, flags=re.M)
+    htmlText8 = re.sub(r'!\[(.*?)\]\((.*?)\)', r"<img alt='\1' src='\2' />", htmlText7, flags=re.M)
+    htmlText9 = re.sub(r'\[(.*?)\]\((.*?)\)', r"<a href='\2'>\1</a>", htmlText8, flags=re.M)
 
-    return htmlText
+    return htmlText9
 
 test_Test = """
 # A story
