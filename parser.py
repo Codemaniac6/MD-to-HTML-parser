@@ -1,6 +1,5 @@
 import re
 
-        
 
 def parser(mdText):
     htmlText = re.sub(r'^# (.*$)', r"<h1>\1</h1>", mdText, flags=re.I|re.M)
@@ -14,6 +13,7 @@ def parser(mdText):
     htmlText9 = re.sub(r'\[(.*?)\]\((.*?)\)', r"<a href='\2'>\1</a>", htmlText8, flags=re.M)
 
     return htmlText9
+
 
 test_Test = """
 # A story
@@ -37,4 +37,9 @@ This is an [example link](http://example.com/).
 ![alt text](/path/to/img.jpg)
 """
 
-print(parser(test_Test))
+patterns = {r'^# (.*$)': r"<h1>\1</h1>", r'## (.*$)': r"<h2>\1</h2>"}
+htmlText = [re.sub(k, v, test_Test, flags=re.I | re.M) for k, v in patterns.items()]
+
+
+# print(parser(test_Test))
+print(htmlText)
